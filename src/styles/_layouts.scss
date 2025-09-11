@@ -1,0 +1,27 @@
+@mixin font-size($size, $lineHeight: $size) {
+  font-size: $size;
+  line-height: calc($lineHeight / $size);
+}
+
+@mixin row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin col {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin container {
+  @include col;
+  flex: 1;
+}
+
+@mixin hide-scroll {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
