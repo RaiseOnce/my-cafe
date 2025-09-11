@@ -1,22 +1,29 @@
-@use 'sass:color';
+@use 'sass:color' as color;
 
-// Colors
-$color-white: #fff;
-$color-black: #000;
+// Base colors
+$color-white: #ffffff;
+$color-black: #000000;
 
-$color-bg: #111;
+// Background / main
+$color-bg: #111111;
 
-$color-transperent: rgba(255, 255, 255, 0);
-$color-white-transperent: rgba(255, 255, 255, 0.6);
-$color-black-transperent: rgba(0, 0, 0, 0.6);
-$color-green-transperent: rgba(64, 181, 173, 0.6);
+// Transparency helpers (readable names)
+$color-transparent: rgba(255, 255, 255, 0);
+$color-white-transparent: rgba(255, 255, 255, 0.6);
+$color-black-transparent: rgba(0, 0, 0, 0.6);
+$color-green-transparent: rgba(64, 181, 173, 0.6);
 
-$color-gray: #bbb;
-$color-gray-dark: #999;
+// Palette
+$color-gray: #bbbbbb;
+$color-gray-dark: #999999;
 $color-btn: #eeeeee;
 $color-green: #53c28b;
-$color-green-dark: #53c28b70;
+$color-green-dark: rgba(83, 194, 139, 0.44); // readable rgba alternative
 $color-main: #f5da5a;
 $color-accent: #5983d5;
+$color-border: #cccccc;
+
+// Derived color (use sass:color and alias color.adjust)
 $color-muted: color.adjust($color-main, $lightness: 20%);
-$color-border: #ccc;
+
+// Export list note: when @use'd with namespace, refer as colors.$color-main

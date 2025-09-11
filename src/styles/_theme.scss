@@ -1,1 +1,25 @@
-@use './colors';
+// _theme.scss
+@use './colors' as colors;
+
+// Global theme helper
+.theme {
+  transition: 0.3s all ease;
+}
+
+/* Light theme */
+.light {
+  background-color: colors.$color-white;
+  color: colors.$color-bg; // dark as text in light mode
+}
+
+/* Dark theme */
+.dark {
+  background-color: colors.$color-bg;
+  color: colors.$color-gray;
+}
+
+/* Example usage */
+.header {
+  background-color: colors.$color-main;
+  border-bottom: 1px solid colors.$color-border;
+}
