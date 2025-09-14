@@ -23,11 +23,9 @@
 // Container helper (reusable layout pattern)
 @mixin container {
   display: flex;
-  flex-direction: column;
-  max-width: 1366px;
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 0 60px;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
   justify-content: space-between;
 }
 
