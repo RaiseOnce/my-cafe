@@ -6,23 +6,3 @@
 @use './layouts';
 @use './base';
 @use './theme';
-
-:root {
-  /* Светлая тема по умолчанию */
-  --bg-color: #ffffff;
-  --text-color: #21201f;
-  --primary-color: #0070f3;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #191918;
-    --text-color: #dfdedb;
-    --primary-color: #1e90ff;
-  }
-}
-
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}

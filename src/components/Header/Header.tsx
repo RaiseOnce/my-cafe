@@ -1,7 +1,9 @@
 import React from 'react'
 import styles from './Header.module.scss'
 import { Container } from '../Container/Container'
-import { Logo } from '../Logo/Logo'
+import { Logo } from '../../assets/Logo'
+import Link from 'next/link'
+import { Globe } from '@/assets/Globe'
 type Props = {}
 
 export default function Header({}: Props) {
@@ -9,15 +11,17 @@ export default function Header({}: Props) {
     <header className={styles.header}>
       <Container className={styles.container}>
         <div className={styles.left}>
-          <div>
+          <Link className={styles.logo} href="/">
             <Logo />
-          </div>
+          </Link>
           <input />
           <div>Address</div>
         </div>
 
         <div className={styles.right}>
-          <button>Lang</button>
+          <button className={styles.lang}>
+            <Globe />
+          </button>
           <button>Auth</button>
         </div>
       </Container>
