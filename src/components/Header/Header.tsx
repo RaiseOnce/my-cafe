@@ -15,24 +15,30 @@ export default function Header({}: Props) {
     <header className={styles.header}>
       <Container className={styles.container}>
         <div className={styles.left}>
-          {/* <Link className={styles.logo} href="/">
+          <Link className={styles.logo} href="/">
             <Logo />
-          </Link> */}
-          <Loupe />
-          <input />
-
-          <div className={styles.address}>
-            <div className={styles.location}>
-              <Button className={styles.locationBtn}>
-                <Location className={styles.locationSvg} />
-                <span>улица Первая</span>
-              </Button>
+          </Link>
+          <div className={styles.center}>
+            <div className={styles.search}>
+              <div className={styles.searchSvg}>
+                <Loupe />
+              </div>
+              <input className={styles.input} />
             </div>
-            <div className={styles.time}>
-              <Button className={styles.timeBtn}>
-                <Time className={styles.timeSvg} />
-                <span>Сейчас</span>
-              </Button>
+
+            <div className={styles.address}>
+              <div className={styles.location}>
+                <Button className={styles.locationBtn}>
+                  <Location className={styles.locationSvg} />
+                  <span>улица Первая</span>
+                </Button>
+              </div>
+              <div className={styles.time}>
+                <Button className={styles.timeBtn}>
+                  <Time className={styles.timeSvg} />
+                  <span>Сейчас</span>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
