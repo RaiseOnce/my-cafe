@@ -18,22 +18,22 @@ export default function Home() {
             </li>
             <li className={styles.navItem}>
               <Link className={styles.navLink} href="/">
+                Мучное
+              </Link>
+            </li>
+            <li className={styles.navItem}>
+              <Link className={styles.navLink} href="/">
+                Шаурма
+              </Link>
+            </li>
+            <li className={styles.navItem}>
+              <Link className={styles.navLink} href="/">
                 Бургеры
               </Link>
             </li>
             <li className={styles.navItem}>
               <Link className={styles.navLink} href="/">
-                Суши
-              </Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link className={styles.navLink} href="/">
-                Пицца
-              </Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link className={styles.navLink} href="/">
-                Паста
+                Напитки
               </Link>
             </li>
             <li className={styles.navItem}>
@@ -48,83 +48,124 @@ export default function Home() {
 
         <div className={styles.items}>
           <div className={styles.item}>
-            <div className={styles.itemImgWrapper}>
-              <div className={styles.itemAvatar}></div>
-              <Image
-                className={styles.itemImg}
-                alt=""
-                src={burgerImg}
-                width={0}
-                height={0}
-              />
+            <div className={styles.itemInner}>
+              <div className={styles.itemImgWrapper}>
+                <div className={styles.itemAvatar}></div>
+                <Image
+                  className={styles.itemImg}
+                  alt=""
+                  src={burgerImg}
+                  width={0}
+                  height={0}
+                />
+                <div className={styles.itemCounter}>3</div>
+              </div>
+              <div className={styles.itemBottom}>
+                <h4 className={styles.itemName}>Бургер</h4>
+                <div className={styles.itemWeight}>200 г</div>
+                <Button className={styles.itemBtn}>
+                  <span className={styles.itemMinus}>-</span>
+                  <div className={styles.itemPrice}>150 TMT</div>
+                  <span className={styles.itemPlus}>+</span>
+                </Button>
+              </div>
             </div>
-            <h3>Бургер</h3>
-            <span>30-40 мин</span>
-            <span>Быстрая доставка</span>
           </div>
 
           <div className={styles.item}>
-            <div className={styles.itemImgWrapper}>
-              <div className={styles.itemAvatar}></div>
-              <Image
-                className={styles.itemImg}
-                alt=""
-                src={burgerImg}
-                width={0}
-                height={0}
-              />
+            <div className={styles.itemInner}>
+              <div className={styles.itemImgWrapper}>
+                <div className={styles.itemAvatar}></div>
+                <Image
+                  className={styles.itemImg}
+                  alt=""
+                  src={burgerImg}
+                  width={0}
+                  height={0}
+                />
+              </div>
+              <div className={styles.itemBottom}>
+                <h4 className={styles.itemName}>Бургер</h4>
+                <div className={styles.itemWeight}>200 г</div>
+                <Button className={styles.itemBtn}>
+                  <span className={styles.itemMinus}>-</span>
+                  <div className={styles.itemPrice}>150 TMT</div>
+                  <span className={styles.itemPlus}>+</span>
+                </Button>
+              </div>
             </div>
-            <h3>Бургер</h3>
-            <span>30-40 мин</span>
-            <span>Быстрая доставка</span>
           </div>
 
           <div className={styles.item}>
-            <div className={styles.itemImgWrapper}>
-              <div className={styles.itemAvatar}></div>
-              <Image
-                className={styles.itemImg}
-                alt=""
-                src={burgerImg}
-                width={0}
-                height={0}
-              />
+            <div className={styles.itemInner}>
+              <div className={styles.itemImgWrapper}>
+                <div className={styles.itemAvatar}></div>
+                <Image
+                  className={styles.itemImg}
+                  alt=""
+                  src={burgerImg}
+                  width={0}
+                  height={0}
+                />
+              </div>
+              <div className={styles.itemBottom}>
+                <h4 className={styles.itemName}>Бургер</h4>
+                <div className={styles.itemWeight}>200 г</div>
+                <Button className={styles.itemBtn}>
+                  <span className={styles.itemMinus}>-</span>
+                  <div className={styles.itemPrice}>150 TMT</div>
+                  <span className={styles.itemPlus}>+</span>
+                </Button>
+              </div>
             </div>
-            <h3>Бургер</h3>
-            <span>30-40 мин</span>
-            <span>Быстрая доставка</span>
           </div>
 
           <div className={styles.item}>
-            <div className={styles.itemImgWrapper}>
-              <div className={styles.itemAvatar}></div>
-              <Image
-                className={styles.itemImg}
-                alt=""
-                src={burgerImg}
-                width={0}
-                height={0}
-              />
+            <div className={styles.itemInner}>
+              <div className={styles.itemImgWrapper}>
+                <div className={styles.itemAvatar}></div>
+                <Image
+                  className={styles.itemImg}
+                  alt=""
+                  src={burgerImg}
+                  width={0}
+                  height={0}
+                />
+              </div>
+              <div className={styles.itemBottom}>
+                <h4 className={styles.itemName}>Бургер</h4>
+                <div className={styles.itemWeight}>200 г</div>
+                <Button className={styles.itemBtn}>
+                  <span className={styles.itemMinus}>-</span>
+                  <div className={styles.itemPrice}>150 TMT</div>
+                  <span className={styles.itemPlus}>+</span>
+                </Button>
+              </div>
             </div>
-            <h3>Бургер</h3>
-            <span>30-40 мин</span>
-            <span>Быстрая доставка</span>
           </div>
 
           <div className={styles.item}>
-            <div className={styles.itemImgWrapper}>
-              <div className={styles.itemAvatar}></div>
-              <Image
-                className={styles.itemImg}
-                alt=""
-                src={burgerImg}
-                width={0}
-                height={0}
-              />
+            <div className={styles.itemInner}>
+              <div className={styles.itemImgWrapper}>
+                <div className={styles.itemAvatar}></div>
+                <Image
+                  className={styles.itemImg}
+                  alt=""
+                  src={burgerImg}
+                  width={0}
+                  height={0}
+                />
+              </div>
+              <div className={styles.itemBottom}>
+                <h4 className={styles.itemName}>Бургер</h4>
+                <div className={styles.itemWeight}>200 г</div>
+                <Button className={styles.itemBtn}>
+                  <span className={styles.itemMinus}>-</span>
+                  <div className={styles.itemPrice}>150 TMT</div>
+                  <span className={styles.itemPlus}>+</span>
+                </Button>
+              </div>
             </div>
-            <h3>Бургер</h3>
-            <span>30-40 мин</span>
-            <span>Быстрая доставка</span>
           </div>
         </div>
       </div>
