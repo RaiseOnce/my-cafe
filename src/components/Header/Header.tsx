@@ -15,9 +15,9 @@ export default function Header({}: Props) {
     <header className={styles.header}>
       <Container className={styles.container}>
         <div className={styles.left}>
-          <Link className={styles.logo} href="/">
+          {/* <Link className={styles.logo} href="/">
             <Logo />
-          </Link>
+          </Link> */}
           <div className={styles.center}>
             <div className={styles.search}>
               <div className={styles.searchSvg}>

@@ -6,7 +6,7 @@ import Header from '@/components/Header/Header'
 const inter = Inter({
   subsets: ['latin', 'latin-ext', 'cyrillic'], // для туркменского нужно latin-ext
   variable: '--font-inter',
-  weight: ['300', '500', '700'],
+  weight: ['300', '500', '700', '800'],
 })
 export const metadata: Metadata = {
   title: 'My Cafe',
