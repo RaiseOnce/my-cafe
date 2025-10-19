@@ -45,6 +45,19 @@
   color: var(--text-color);
 }
 
+.filterBtn {
+  padding: 10px 16px 10px 16px;
+  display: flex;
+  align-items: center;
+  background-color: rgb(35 35 33 / 0%);
+  border-radius: 16px;
+}
+
+.filterSvg {
+  margin-right: 6px;
+  fill: #ffffff;
+}
+
 .items {
   padding-top: 16px;
   display: flex;
@@ -64,7 +77,6 @@
 }
 
 .itemInner {
-  // background-color: #302f2d72;
   background-color: #232321;
   border-radius: 16px;
 }
@@ -78,9 +90,6 @@
 }
 
 .itemAvatar {
-  background-size: 200px;
-  // background-image: url('../assets/avatar.svg');
-  background-position: center;
   position: absolute;
   border-radius: 16px;
   left: 0;
@@ -106,25 +115,49 @@
 
 .itemCounter {
   position: absolute;
-  right: 8px;
-  bottom: 8px;
+  right: 6px;
+  bottom: 6px;
   font-size: 16px;
   background-color: #232321;
-  padding: 12px 16px 12px 22px;
+  padding: 12px 18px 12px 22px;
   border-top-left-radius: 16px;
   font-weight: 700;
 }
 
-.itemBottom {
+.itemBookmark {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px;
+  background-color: rgb(35 35 33 / 50%);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: rgb(35 35 33 / 80%);
+  }
+}
+
+.itemBookmarkSvg {
+  fill: none;
+  stroke: white;
+}
+
+.itemMiddle {
   padding-left: 16px;
   padding-right: 16px;
-  padding-bottom: 16px;
 }
 
 .itemName {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   font-size: 18px;
   font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .itemInfo {
@@ -135,10 +168,13 @@
 }
 
 .itemWeight {
-  margin-bottom: 16px;
   font-size: 12px;
   font-weight: 500;
   color: #9e9b98;
+}
+
+.itemBtnWrapper {
+  padding: 16px;
 }
 
 .itemBtn {
