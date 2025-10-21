@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Button } from '@/ui/Button/Button'
 import { Filter } from '@/assets/Filter'
 import styles from './Categories.module.scss'
@@ -27,6 +27,26 @@ export default function Categories({}: Props) {
     setIsSortOpen(false) // закрываем модалку после выбора
   }
 
+  const sortRef = useRef<HTMLUListElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (sortRef.current && !sortRef.current.contains(event.target as Node)) {
+        setIsSortOpen(false)
+      }
+    }
+
+    if (isSortOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isSortOpen])
+
   return (
     <nav className={styles.categories}>
       <ul className={styles.list}>
@@ -51,24 +71,25 @@ export default function Categories({}: Props) {
           <span>Сортировка: {activeSort}</span>
         </div>
 
-        {isSortOpen && (
-          <ul className={styles.sortOptions}>
-            {sortOptions.map((option) => {
-              const isActive = activeSort === option
-              return (
-                <li
-                  key={option}
-                  className={`${styles.sortOption} ${
-                    isActive ? styles.activeSortOption : ''
-                  }`}
-                  onClick={() => handleSortSelect(option)}
-                >
-                  <span>{option}</span>
-                </li>
-              )
-            })}
-          </ul>
-        )}
+        <ul
+          ref={sortRef}
+          className={`${styles.sortOptions} ${isSortOpen ? styles.open : ''}`}
+        >
+          {sortOptions.map((option) => {
+            const isActive = activeSort === option
+            return (
+              <li
+                key={option}
+                className={`${styles.sortOption} ${
+                  isActive ? styles.activeSortOption : ''
+                }`}
+                onClick={() => handleSortSelect(option)}
+              >
+                <span>{option}</span>
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </nav>
   )
