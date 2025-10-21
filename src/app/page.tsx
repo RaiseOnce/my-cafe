@@ -1,5 +1,5 @@
 import styles from './page.module.scss'
-import Menu from '@/components/Menu/Menu'
+import Categories from '@/components/Categories/Categories'
 import ProductCards from '@/components/ProductCards/ProductCards'
 
 export default function Home() {
@@ -7,7 +7,7 @@ export default function Home() {
     <div className={styles.home}>
       <div className={styles.container}>
         <h2 className={styles.title}>Меню</h2>
-        <Menu />
+        <Categories />
         <ProductCards />
       </div>
     </div>
