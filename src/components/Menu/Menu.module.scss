@@ -1,0 +1,42 @@
+.nav {
+  padding: 8px;
+  border-radius: 22px;
+  margin-bottom: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #302f2d;
+}
+
+.navList {
+  display: flex;
+  flex-wrap: nowrap;
+  list-style-type: none;
+}
+
+.navtItem {
+  font-size: 16px;
+}
+
+.navLink {
+  line-height: 48px;
+  height: 100%;
+  padding: 0 18px;
+  border-radius: 16px;
+  display: block;
+  transition: background-color 0.2s ease;
+  color: var(--text-color);
+}
+
+.filterBtn {
+  padding: 10px 16px 10px 16px;
+  display: flex;
+  align-items: center;
+  background-color: rgb(35 35 33 / 0%);
+  border-radius: 16px;
+}
+
+.filterSvg {
+  margin-right: 6px;
+  fill: #ffffff;
+}
