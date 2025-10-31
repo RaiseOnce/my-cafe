@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Button } from '@/ui/Button/Button'
 import { Filter } from '@/assets/Filter'
 import styles from './Categories.module.scss'
+import { Check } from '@/assets/Check'
 
 type Props = {}
 
@@ -86,6 +87,13 @@ export default function Categories({}: Props) {
                 onClick={() => handleSortSelect(option)}
               >
                 <span>{option}</span>
+                {isActive ? (
+                  <span className={styles.check}>
+                    <Check className={styles.checkSvg} />
+                  </span>
+                ) : (
+                  <span className={styles.checkEmpty}></span>
+                )}
               </li>
             )
           })}

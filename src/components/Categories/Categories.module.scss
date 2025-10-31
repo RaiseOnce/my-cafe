@@ -51,7 +51,7 @@
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: #191918;
+    background-color: #242423;
   }
 }
 
@@ -125,4 +125,24 @@
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
   }
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 100px;
+}
+
+.checkSvg {
+  stroke: black;
+}
+
+.checkEmpty {
+  display: block;
+  height: 24px;
+  width: 24px;
+  background-color: #6b6966;
+  border-radius: 100px;
 }
