@@ -50,9 +50,12 @@ export default function Header({}: Props) {
         </div>
 
         <div className={styles.right}>
-          <Button className={styles.lang}>
-            <Globe />
-          </Button>
+          <div className={styles.langWrapper}>
+            <Button className={styles.langBtn}>
+              <Globe />
+            </Button>
+            <div className={styles.hint}>Сменить язык</div>
+          </div>
           <Button className={styles.cartBtn}>
             <Basket className={styles.cartSvg} />
             <span className={styles.cartText}>Корзина</span>
