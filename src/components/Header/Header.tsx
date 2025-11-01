@@ -10,6 +10,7 @@ import { Location } from '@/assets/Location'
 import { Time } from '@/assets/Time'
 import { Navigator } from '@/assets/Navigator'
 import { Basket } from '@/assets/Basket'
+import { Popup } from '@/assets/Popup'
 type Props = {}
 
 export default function Header({}: Props) {
@@ -54,7 +55,10 @@ export default function Header({}: Props) {
             <Button className={styles.langBtn}>
               <Globe />
             </Button>
-            <div className={styles.hint}>Сменить язык</div>
+            <div className={styles.popupWrapper}>
+              <div className={styles.popupText}>Сменить язык</div>
+              <Popup className={styles.popupSvg} />
+            </div>
           </div>
           <Button className={styles.cartBtn}>
             <Basket className={styles.cartSvg} />
