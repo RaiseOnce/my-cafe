@@ -1,9 +1,12 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
 import Link from 'next/link'
 import Image, { StaticImageData } from 'next/image'
 import styles from './ProductCard.module.scss'
 import { Bookmark } from '@/assets/Bookmark'
 import { Button } from '@/ui/Button/Button'
+import { useProductStore } from '@/store/useProductStore'
 
 type Product = {
   id: number | string
@@ -11,9 +14,9 @@ type Product = {
   weight: string
   price: number
   image: StaticImageData | string
-  link?: string
-  bookmark?: boolean
-  count?: number
+  link: string
+  bookmark: boolean
+  count: number
 }
 
 type Props = {
@@ -21,11 +24,14 @@ type Props = {
 }
 
 export default function ProductCard({ product }: Props) {
+  const { increaseCount, decreaseCount } = useProductStore()
   return (
     <React.Fragment>
       <div className={styles.productCard}>
         <div
-          className={`${styles.inner} ${product.count && styles.innerActive}`}
+          className={`${styles.inner} ${
+            product.count > 0 ? styles.innerActive : ''
+          }`}
         >
           <Link href={product.link || '/'} className={styles.innerLink}>
             <div className={styles.imgWrapper}>
@@ -37,8 +43,10 @@ export default function ProductCard({ product }: Props) {
                 width={0}
                 height={0}
               />
-              {product.count && (
+              {product.count > 0 ? (
                 <div className={styles.counter}>{product.count}</div>
+              ) : (
+                ''
               )}
               <div className={styles.bookmark}>
                 <Bookmark
@@ -59,11 +67,17 @@ export default function ProductCard({ product }: Props) {
                 className={`${styles.minus} ${
                   product.count && styles.minusActive
                 }`}
+                onClick={() => decreaseCount(product.id)}
               >
                 -
               </span>
               <div className={styles.price}>{product.price} TMT</div>
-              <span className={styles.plus}>+</span>
+              <span
+                className={styles.plus}
+                onClick={() => increaseCount(product.id)}
+              >
+                +
+              </span>
             </Button>
           </div>
         </div>
