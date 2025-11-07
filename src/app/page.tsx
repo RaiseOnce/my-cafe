@@ -15,6 +15,7 @@ export default function Home() {
         {
           id: 1,
           name: 'Бургер',
+          category: 'Бургеры',
           weight: '200 г',
           price: 150,
           image: burgerImg,
@@ -24,7 +25,8 @@ export default function Home() {
         },
         {
           id: 2,
-          name: 'Пицца',
+          name: 'Сомса',
+          category: 'Мучное',
           weight: '450 г',
           price: 300,
           image: burgerImg,
@@ -34,11 +36,12 @@ export default function Home() {
         },
         {
           id: 3,
-          name: 'Суши',
+          name: 'Шаурма',
+          category: 'Шаурма',
           weight: '120 г',
           price: 200,
           image: burgerImg,
-          link: '/sushi',
+          link: '/sushis/sushi',
           count: 0,
           bookmark: false,
         },

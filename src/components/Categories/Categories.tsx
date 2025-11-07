@@ -5,6 +5,7 @@ import { Button } from '@/ui/Button/Button'
 import { Filter } from '@/assets/Filter'
 import styles from './Categories.module.scss'
 import { Check } from '@/assets/Check'
+import { useCatalogStore } from '@/store/useCatalogStore'
 
 type Props = {}
 
@@ -12,11 +13,8 @@ export default function Categories({}: Props) {
   const categories = ['Все', 'Шаурма', 'Мучное', 'Бургеры', 'Напитки']
   const sortOptions = ['По умолчанию', 'Дороже', 'Дешевле']
 
-  // по умолчанию активна первая категория
-  const [activeCategory, setActiveCategory] = useState(categories[0])
-
-  // состояние активной сортировки
-  const [activeSort, setActiveSort] = useState(sortOptions[0])
+  const { activeCategory, setActiveCategory, activeSort, setActiveSort } =
+    useCatalogStore()
 
   // новое состояние для модалки сортировки
   const [isSortOpen, setIsSortOpen] = useState(false)

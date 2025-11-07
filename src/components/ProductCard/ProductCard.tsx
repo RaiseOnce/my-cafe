@@ -11,6 +11,7 @@ import { useProductStore } from '@/store/useProductStore'
 type Product = {
   id: number | string
   name: string
+  category: string
   weight: string
   price: number
   image: StaticImageData | string
