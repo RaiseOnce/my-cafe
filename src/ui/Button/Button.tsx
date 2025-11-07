@@ -5,14 +5,22 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string
 }
 
-export const Button: React.FC<ButtonProps> = ({ className, children }) => {
+export const Button: React.FC<ButtonProps> = ({
+  className,
+  children,
+  ...props
+}) => {
   // формируем строку классов вручную
   let buttonClass = styles.button
 
   // добавляем кастомные классы, если переданы
   if (className) buttonClass += ` ${className}`
 
-  return <button className={buttonClass}>{children}</button>
+  return (
+    <button className={buttonClass} {...props}>
+      {children}
+    </button>
+  )
 }
 
 // import React from 'react'
