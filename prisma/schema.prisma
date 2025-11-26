@@ -10,17 +10,22 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url = env("DATABASE_URL")
 }
 
 model User {
   id Int @id @default(autoincrement())
 
-  phone String @unique
+  email    String? @unique
+  password String?
+  phone    String?   @unique
   fullName String?
-  role UserRole @default(USER)
+  role     UserRole @default(USER)
+  verified Boolean @default(false)
 
-  cart Cart?
-  order Order[]
+
+  cart             Cart?
+  order            Order[]
   verificationCode VerificationCode[]
 
   createdAt DateTime @default(now())
@@ -45,6 +50,8 @@ model Product {
 
   category Category @relation(fields: [categoryId], references: [id])
   categoryId Int
+
+  items ProductItem[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
