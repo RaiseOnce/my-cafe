@@ -1,3 +1,4 @@
+import { categories, products } from './constants'
 import { prisma } from './prisma-client'
 import { hashSync } from 'bcrypt'
 
@@ -18,10 +19,120 @@ async function up() {
       },
     ],
   })
+
+  await prisma.category.createMany({
+    data: categories,
+  })
+
+  await prisma.product.createMany({
+    data: products,
+  })
+
+  await prisma.productItem.createMany({
+    data: [
+      {
+        productId: 1,
+        price: 250,
+      },
+      {
+        productId: 2,
+        price: 300,
+      },
+      {
+        productId: 3,
+        price: 350,
+      },
+      {
+        productId: 4,
+        price: 200,
+      },
+      {
+        productId: 5,
+        price: 450,
+      },
+      {
+        productId: 6,
+        price: 250,
+      },
+      {
+        productId: 7,
+        price: 450,
+      },
+      {
+        productId: 8,
+        price: 350,
+      },
+      {
+        productId: 9,
+        price: 300,
+      },
+      {
+        productId: 10,
+        price: 200,
+      },
+      {
+        productId: 11,
+        price: 250,
+      },
+      {
+        productId: 12,
+        price: 400,
+      },
+      {
+        productId: 13,
+        price: 350,
+      },
+      {
+        productId: 14,
+        price: 400,
+      },
+      {
+        productId: 15,
+        price: 250,
+      },
+      {
+        productId: 16,
+        price: 300,
+      },
+      {
+        productId: 17,
+        price: 350,
+      },
+    ],
+  })
+
+  await prisma.cart.createMany({
+    data: [
+      {
+        userId: 1,
+        totalAmount: 0,
+        token: '12345',
+      },
+
+      {
+        userId: 2,
+        totalAmount: 0,
+        token: '67890',
+      },
+    ],
+  })
+
+  await prisma.cartItem.create({
+    data: {
+      productItemId: 1,
+      cartId: 1,
+      quantity: 2,
+    },
+  })
 }
 
 async function down() {
   await prisma.$executeRaw`TRUNCATE TABLE "User" RESTART IDENTITY CASCADE`
+  await prisma.$executeRaw`TRUNCATE TABLE "Category" RESTART IDENTITY CASCADE`
+  await prisma.$executeRaw`TRUNCATE TABLE "Product" RESTART IDENTITY CASCADE`
+  await prisma.$executeRaw`TRUNCATE TABLE "ProductItem" RESTART IDENTITY CASCADE`
+  await prisma.$executeRaw`TRUNCATE TABLE "Cart" RESTART IDENTITY CASCADE`
+  await prisma.$executeRaw`TRUNCATE TABLE "CartItem" RESTART IDENTITY CASCADE`
 }
 
 async function main() {
