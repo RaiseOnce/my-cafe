@@ -14,6 +14,7 @@ import { Navigator } from '@/assets/Navigator'
 import { Basket } from '@/assets/Basket'
 import { Popup } from '@/assets/Popup'
 import { Check } from '@/assets/Check'
+import { SearchInput } from '../SearchInput/SearchInput'
 type Props = {}
 
 export default function Header({}: Props) {
@@ -60,12 +61,13 @@ export default function Header({}: Props) {
             <Logo />
           </Link> */}
           <div className={styles.center}>
-            <div className={styles.search}>
+            <SearchInput />
+            {/* <div className={styles.search}>
               <div className={styles.searchSvg}>
                 <Loupe />
               </div>
               <input className={styles.input} />
-            </div>
+            </div> */}
 
             <div className={styles.address}>
               <Button className={styles.locationSetBtn}>
