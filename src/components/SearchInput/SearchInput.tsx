@@ -9,19 +9,12 @@ interface Props {
 }
 
 export const SearchInput: React.FC<Props> = ({ className }) => {
-  const [focused, setFocused] = React.useState(false)
-
   return (
     <div className={`${className} ${styles.search}`}>
       <div className={styles.searchSvg}>
         <Loupe />
       </div>
-      <input
-        className={styles.input}
-        type="text"
-        placeholder="Найти"
-        onFocus={() => setFocused(true)}
-      />
+      <input className={styles.input} type="text" placeholder="Найти" />
     </div>
   )
 }
