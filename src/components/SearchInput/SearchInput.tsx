@@ -9,7 +9,17 @@ interface Props {
 }
 
 export const SearchInput: React.FC<Props> = ({ className }) => {
-  const [items] = useState(['Телефон', 'телевизор', 'Ноутбук', 'Планшет'])
+  const [items] = useState([
+    'Телефон',
+    'телевизор',
+    'Ноутбук',
+    'Планшет',
+    'тепловизор',
+    'теплотрасса',
+    'телестанция',
+    'телебашня',
+    'телескоп',
+  ])
   const [query, setQuery] = useState('')
   const [hovered, setHovered] = useState<string | null>(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -53,7 +63,7 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
   }, [query, filtered])
 
   const onSelect = (value: string) => {
-    setQuery(value)
+    setQuery(value.toLowerCase())
     setHovered(null)
     setIsOpen(false)
   }
@@ -67,7 +77,8 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
         <div className={styles.suggestion}>{suggestion}</div>
         <input
           className={styles.input}
-          name="search"
+          autoComplete="off"
+          name="searchInput"
           type="text"
           placeholder="Найти"
           value={query}
@@ -80,11 +91,11 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
 
       {isOpen && (
         <div className={styles.searchItems}>
-          {filtered.map((item) => (
+          {filtered.slice(0, 5).map((item) => (
             <div
               key={item}
               className={styles.searchItem}
-              onClick={() => onSelect(item)}
+              onClick={() => onSelect(item.toLowerCase())}
               onMouseEnter={() => setHovered(item.toLowerCase())}
               onMouseLeave={() => setHovered(null)}
             >
