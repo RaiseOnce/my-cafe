@@ -15,6 +15,32 @@
   fill: #ffffff;
 }
 
+.crossSvg {
+  width: 40px;
+
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.crossInner {
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  stroke: #2f2f2e;
+  background-color: #878684;
+  border-radius: 100px;
+}
+
 .inputWrapper {
   position: relative;
   display: flex;

@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './SearchInput.module.scss'
 import { Loupe } from '@/assets/Loupe'
+import { Cross } from '@/assets/Cross'
 
 interface Props {
   className?: string
@@ -28,7 +29,7 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
 
   // Фильтрация: только элементы, которые начинаются с query
   const filtered =
-    query.length >= 2
+    query.length >= 1
       ? items.filter((item) =>
           item.toLowerCase().startsWith(query.toLowerCase())
         )
@@ -57,11 +58,6 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
     return () => document.removeEventListener('mousedown', handler)
   }, [])
 
-  // Управление открытием списка при изменении query
-  useEffect(() => {
-    setIsOpen(query.length >= 2 && filtered.length > 0)
-  }, [query, filtered])
-
   const onSelect = (value: string) => {
     setQuery(value.toLowerCase())
     setHovered(null)
@@ -74,7 +70,7 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
         <div className={styles.searchSvg}>
           <Loupe />
         </div>
-        <div className={styles.suggestion}>{suggestion}</div>
+        {isOpen && <div className={styles.suggestion}>{suggestion}</div>}
         <input
           className={styles.input}
           autoComplete="off"
@@ -85,11 +81,18 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
           onChange={(e) => {
             setQuery(e.target.value)
             setHovered(null)
+            setIsOpen(e.target.value.length >= 1 && filtered.length > 0)
           }}
         />
+
+        <div className={styles.crossSvg}>
+          <div className={styles.crossInner}>
+            <Cross />
+          </div>
+        </div>
       </div>
 
-      {isOpen && (
+      {isOpen && filtered.length > 0 && (
         <div className={styles.searchItems}>
           {filtered.slice(0, 5).map((item) => (
             <div
