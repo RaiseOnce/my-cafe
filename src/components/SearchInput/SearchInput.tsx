@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from './SearchInput.module.scss'
 import { Loupe } from '@/assets/Loupe'
 
@@ -9,12 +9,90 @@ interface Props {
 }
 
 export const SearchInput: React.FC<Props> = ({ className }) => {
+  const [items] = useState(['Телефон', 'телевизор', 'Ноутбук', 'Планшет'])
+  const [query, setQuery] = useState('')
+  const [hovered, setHovered] = useState<string | null>(null)
+  const [isOpen, setIsOpen] = useState(false)
+
+  const ref = useRef<HTMLDivElement>(null)
+
+  // Фильтрация: только элементы, которые начинаются с query
+  const filtered =
+    query.length >= 2
+      ? items.filter((item) =>
+          item.toLowerCase().startsWith(query.toLowerCase())
+        )
+      : []
+
+  const suggestion = (() => {
+    const base = query
+    const next = hovered
+      ? hovered.toLowerCase()
+      : filtered.length > 0
+      ? filtered[0].toLowerCase()
+      : ''
+
+    if (!base || !next.startsWith(base.toLowerCase())) return base
+    return next
+  })()
+
+  // Закрытие по клику вне компонента
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
+
+  // Управление открытием списка при изменении query
+  useEffect(() => {
+    setIsOpen(query.length >= 2 && filtered.length > 0)
+  }, [query, filtered])
+
+  const onSelect = (value: string) => {
+    setQuery(value)
+    setHovered(null)
+    setIsOpen(false)
+  }
+
   return (
-    <div className={`${className} ${styles.search}`}>
-      <div className={styles.searchSvg}>
-        <Loupe />
+    <div ref={ref} className={`${className} ${styles.search}`}>
+      <div className={styles.inputWrapper}>
+        <div className={styles.searchSvg}>
+          <Loupe />
+        </div>
+        <div className={styles.suggestion}>{suggestion}</div>
+        <input
+          className={styles.input}
+          name="search"
+          type="text"
+          placeholder="Найти"
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value)
+            setHovered(null)
+          }}
+        />
       </div>
-      <input className={styles.input} type="text" placeholder="Найти" />
+
+      {isOpen && (
+        <div className={styles.searchItems}>
+          {filtered.map((item) => (
+            <div
+              key={item}
+              className={styles.searchItem}
+              onClick={() => onSelect(item)}
+              onMouseEnter={() => setHovered(item.toLowerCase())}
+              onMouseLeave={() => setHovered(null)}
+            >
+              {item.toLowerCase()}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
