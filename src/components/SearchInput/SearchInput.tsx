@@ -67,7 +67,13 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
   return (
     <div ref={ref} className={`${className} ${styles.search}`}>
       <div className={styles.inputWrapper}>
-        <div className={styles.searchSvg}>
+        <div
+          className={styles.searchSvg}
+          onClick={() => {
+            setIsOpen(true)
+            ref.current?.querySelector('input')?.focus()
+          }}
+        >
           <Loupe />
         </div>
         {isOpen && <div className={styles.suggestion}>{suggestion}</div>}
@@ -85,11 +91,20 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
           }}
         />
 
-        <div className={styles.crossSvg}>
-          <div className={styles.crossInner}>
-            <Cross />
+        {query && (
+          <div
+            className={styles.crossSvg}
+            onClick={() => {
+              setQuery('')
+              setHovered(null)
+              setIsOpen(false)
+            }}
+          >
+            <div className={styles.crossInner}>
+              <Cross />
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {isOpen && filtered.length > 0 && (

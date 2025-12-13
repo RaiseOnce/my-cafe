@@ -11,6 +11,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  cursor: pointer;
   flex-shrink: 0;
   fill: #ffffff;
 }
@@ -23,6 +24,7 @@
   justify-content: flex-start;
   align-items: center;
   position: absolute;
+  cursor: pointer;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
@@ -35,10 +37,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  fill: #878684;
+  transition: fill 0.2s ease;
 
   stroke: #2f2f2e;
-  background-color: #878684;
-  border-radius: 100px;
+  // background-color: #878684;
+  // border-radius: 100px;
+
+  &:hover {
+    fill: #dfdedb;
+  }
 }
 
 .inputWrapper {
@@ -55,7 +63,7 @@
   position: relative;
   width: 100%;
   padding-left: 8px;
-  padding-right: 30px;
+  padding-right: 50px;
   font-size: 13px;
   line-height: 13px;
   font-weight: 400;
