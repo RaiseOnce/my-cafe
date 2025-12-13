@@ -11,11 +11,15 @@
   padding: 0;
 }
 
+:root {
+  --font-inter: 'Inter', sans-serif;
+}
+
 html,
 body {
   width: 100%;
   min-height: 100%;
-  overflow-x: hidden; /* avoid 100vw scrollbar issues */
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 

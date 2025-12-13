@@ -5,22 +5,28 @@ import styles from './Header.module.scss'
 import { Container } from '../Container/Container'
 import { Logo } from '../../assets/Logo'
 import Link from 'next/link'
-import { Globe } from '@/assets/Globe'
 import { Button } from '@/ui/Button/Button'
-import { Loupe } from '@/assets/Loupe'
-import { Location } from '@/assets/Location'
-import { Time } from '@/assets/Time'
 import { Navigator } from '@/assets/Navigator'
 import { Basket } from '@/assets/Basket'
-import { Popup } from '@/assets/Popup'
-import { Check } from '@/assets/Check'
+
 import { SearchInput } from '../SearchInput/SearchInput'
 import LangSwitcher from '../LangSwitcher/LangSwitcher'
 type Props = {}
 
 export default function Header({}: Props) {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <Container className={styles.container}>
         <div className={styles.left}>
           {/* <Link className={styles.logo} href="/">

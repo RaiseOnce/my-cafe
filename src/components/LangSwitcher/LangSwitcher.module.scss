@@ -40,6 +40,7 @@
 .popupText {
   font-size: 16px;
   font-weight: 500;
+  font-family: var(--font-inter);
   color: #000;
 }
 
@@ -97,6 +98,7 @@
   border: none;
   color: #e0deda;
   font-size: 16px;
+  font-family: var(--font-inter);
   cursor: pointer;
   border-radius: 0;
   transition: all 0.2s ease;
