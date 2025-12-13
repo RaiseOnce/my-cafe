@@ -138,8 +138,10 @@
 }
 
 .minus {
+  display: flex;
   padding-left: 32px;
   visibility: hidden;
+  fill: #dfdedb;
 }
 
 .minusActive {
@@ -147,5 +149,7 @@
 }
 
 .plus {
+  display: flex;
   padding-right: 32px;
+  fill: #dfdedb;
 }

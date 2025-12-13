@@ -7,6 +7,8 @@ import styles from './ProductCard.module.scss'
 import { Bookmark } from '@/assets/Bookmark'
 import { Button } from '@/ui/Button/Button'
 import { useProductStore } from '@/store/useProductStore'
+import { Plus } from '@/assets/Plus'
+import { Minus } from '@/assets/Minus'
 
 type Product = {
   id: number | string
@@ -101,7 +103,7 @@ export default function ProductCard({ product }: Props) {
                   decreaseCount(product.id)
                 }}
               >
-                -
+                <Minus />
               </span>
               <div className={styles.price}>{product.price} TMT</div>
               <span
@@ -111,7 +113,7 @@ export default function ProductCard({ product }: Props) {
                   increaseCount(product.id)
                 }}
               >
-                +
+                <Plus />
               </span>
             </Button>
           </div>
