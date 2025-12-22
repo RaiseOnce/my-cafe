@@ -48,6 +48,7 @@ model Product {
   name String
   imageUrl String
 
+
   category Category @relation(fields: [categoryId], references: [id])
   categoryId Int
 
@@ -61,6 +62,7 @@ model ProductItem {
     id Int @id @default(autoincrement())
 
     price     Int
+    weight    Int
 
     cartItems CartItem[]
 
@@ -76,7 +78,7 @@ model Cart {
 
   items CartItem[]
 
-  token String
+  token String @unique
 
   totalAmount Int @default(0)
 
@@ -98,6 +100,8 @@ model CartItem {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([cartId, productItemId])
 }
 
 model Order {
@@ -120,6 +124,7 @@ model Order {
   updatedAt DateTime @updatedAt
 }
 
+
 model VerificationCode {
   id        Int      @id @default(autoincrement())
   code      String
@@ -132,6 +137,14 @@ model VerificationCode {
   createdAt DateTime @default(now())
 
   @@unique([userId, code])
+}
+
+model Favorite {
+  id        Int @id @default(autoincrement())
+  userId    Int
+  productId Int
+
+  @@unique([userId, productId])
 }
 
 enum OrderStatus {

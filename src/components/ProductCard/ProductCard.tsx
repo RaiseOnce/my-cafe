@@ -1,73 +1,66 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 import styles from './ProductCard.module.scss'
 import { Bookmark } from '@/assets/Bookmark'
 import { Button } from '@/ui/Button/Button'
-import { useProductStore } from '@/store/useProductStore'
 import { Plus } from '@/assets/Plus'
 import { Minus } from '@/assets/Minus'
+import { addToCart, removeFromCart } from '@/app/actions/cart'
 
-type Product = {
-  id: number | string
-  name: string
-  category: string
-  weight: string
-  price: number
-  image: StaticImageData | string
-  link: string
-  bookmark: boolean
-  count: number
-}
-
-type Props = {
-  product: Product
-}
-
-export default function ProductCard({ product }: Props) {
-  const { increaseCount, decreaseCount } = useProductStore()
-  const { toggleBookmark } = useProductStore()
-
-  const handleButtonClick = () => {
-    // Если товара ещё нет — первый клик добавляет 1
-    if (product.count === 0) {
-      increaseCount(product.id)
+type ProductCardProps = {
+  product: {
+    id: number
+    name: string
+    imageUrl: string
+    bookmark: boolean
+    category: {
+      name: string
     }
+    items: {
+      id: number
+      price: number
+      weight: String
+      cartItems: {
+        quantity: number
+      }[]
+    }[]
   }
+}
+
+export default function ProductCard({ product }: ProductCardProps) {
+  const item = product.items[0]
+  const quantity = item.cartItems[0]?.quantity ?? 0
 
   return (
     <React.Fragment>
       <div className={styles.productCard}>
         <div
           className={`${styles.inner} ${
-            product.count > 0 ? styles.innerActive : ''
+            quantity > 0 ? styles.innerActive : ''
           }`}
         >
-          <Link href={product.link || '/'} className={styles.innerLink}>
+          <Link href={'/'} className={styles.innerLink}>
             <div className={styles.imgWrapper}>
               <div className={styles.avatar}></div>
               <Image
                 className={styles.img}
                 alt={product.name}
-                src={product.image}
-                width={0}
-                height={0}
+                src={product.imageUrl}
+                width={648}
+                height={312}
               />
-              {product.count > 0 ? (
+              {quantity > 0 ? (
                 <div
                   className={styles.counter}
                   style={{
                     minWidth:
-                      product.count < 10
-                        ? '52px'
-                        : product.count < 100
-                        ? '62px'
-                        : '72px',
+                      quantity < 10 ? '52px' : quantity < 100 ? '62px' : '72px',
                   }}
                 >
-                  {product.count}
+                  {quantity}
                 </div>
               ) : (
                 ''
@@ -77,7 +70,7 @@ export default function ProductCard({ product }: Props) {
                 onClick={(e) => {
                   e.preventDefault()
                   e.stopPropagation()
-                  toggleBookmark(product.id)
+                  // toggleFavorite(userId, product.id)
                 }}
               >
                 <Bookmark
@@ -89,28 +82,26 @@ export default function ProductCard({ product }: Props) {
             </div>
             <div className={styles.middle}>
               <h4 className={styles.name}>{product.name}</h4>
-              <div className={styles.weight}>{product.weight}</div>
+              <div className={styles.weight}>{item.weight} г</div>
             </div>
           </Link>
           <div className={styles.btnWrapper}>
-            <Button className={styles.btn} onClick={handleButtonClick}>
+            <Button className={styles.btn}>
               <span
-                className={`${styles.minus} ${
-                  product.count && styles.minusActive
-                }`}
+                className={`${styles.minus} ${quantity && styles.minusActive}`}
                 onClick={(e) => {
                   e.stopPropagation()
-                  decreaseCount(product.id)
+                  removeFromCart(item.id)
                 }}
               >
                 <Minus />
               </span>
-              <div className={styles.price}>{product.price} TMT</div>
+              <div className={styles.price}>{item.price} TMT</div>
               <span
                 className={styles.plus}
                 onClick={(e) => {
                   e.stopPropagation()
-                  increaseCount(product.id)
+                  addToCart(item.id)
                 }}
               >
                 <Plus />

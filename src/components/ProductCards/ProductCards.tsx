@@ -1,23 +1,44 @@
 'use client'
-import { useProductStore } from '@/store/useProductStore'
+
 import ProductCard from '../ProductCard/ProductCard'
 import styles from './ProductCards.module.scss'
-import { useCatalogStore } from '@/store/useCatalogStore'
+import { useCatalogStore } from '@/app/store/useCatalogStore'
 
-export default function ProductCards() {
-  const { products } = useProductStore()
+type Category = {
+  id: number
+  name: string
+}
+
+type Product = {
+  id: number
+  name: string
+  imageUrl: string
+  bookmark: boolean
+  categoryId: number
+  category: Category
+  createdAt: Date
+  updatedAt: Date
+  items: any[]
+}
+
+type Props = {
+  products: Product[]
+}
+
+export default function ProductCards({ products }: Props) {
   const { activeCategory, activeSort } = useCatalogStore()
 
-  // фильтруем по категории
   const filteredProducts =
     activeCategory === 'Все'
       ? products
-      : products.filter((p) => p.category === activeCategory)
+      : products.filter((p) => p.category.name === activeCategory)
 
-  // сортируем по цене
   const sortedProducts = [...filteredProducts].sort((a, b) => {
-    if (activeSort === 'Дороже') return b.price - a.price
-    if (activeSort === 'Дешевле') return a.price - b.price
+    const aPrice = a.items[0]?.price ?? 0
+    const bPrice = b.items[0]?.price ?? 0
+
+    if (activeSort === 'Дороже') return bPrice - aPrice
+    if (activeSort === 'Дешевле') return aPrice - bPrice
     return 0
   })
 

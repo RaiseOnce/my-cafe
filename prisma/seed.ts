@@ -33,70 +33,87 @@ async function up() {
       {
         productId: 1,
         price: 250,
+        weight: 150,
       },
       {
         productId: 2,
         price: 300,
+        weight: 250,
       },
       {
         productId: 3,
         price: 350,
+        weight: 300,
       },
       {
         productId: 4,
         price: 200,
+        weight: 350,
       },
       {
         productId: 5,
         price: 450,
+        weight: 150,
       },
       {
         productId: 6,
         price: 250,
+        weight: 250,
       },
       {
         productId: 7,
         price: 450,
+        weight: 100,
       },
       {
         productId: 8,
         price: 350,
+        weight: 200,
       },
       {
         productId: 9,
         price: 300,
+        weight: 150,
       },
       {
         productId: 10,
         price: 200,
+        weight: 350,
       },
       {
         productId: 11,
         price: 250,
+        weight: 100,
       },
       {
         productId: 12,
         price: 400,
+        weight: 350,
       },
       {
         productId: 13,
         price: 350,
+        weight: 200,
       },
       {
         productId: 14,
         price: 400,
+        weight: 300,
       },
       {
         productId: 15,
         price: 250,
+        weight: 100,
       },
       {
         productId: 16,
         price: 300,
+        weight: 250,
       },
       {
         productId: 17,
         price: 350,
+        weight: 100,
       },
     ],
   })

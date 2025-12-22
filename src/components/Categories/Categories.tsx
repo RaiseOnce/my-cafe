@@ -5,26 +5,27 @@ import { Button } from '@/ui/Button/Button'
 import { Filter } from '@/assets/Filter'
 import styles from './Categories.module.scss'
 import { Check } from '@/assets/Check'
-import { useCatalogStore } from '@/store/useCatalogStore'
+import { useCatalogStore } from '@/app/store/useCatalogStore'
 
-type Props = {}
+type Category = {
+  id: number
+  name: string
+  products: any[]
+}
 
-export default function Categories({}: Props) {
-  const categories = ['Все', 'Шаурма', 'Мучное', 'Бургеры', 'Напитки']
+type Props = {
+  categories: Category[]
+}
+
+export default function Categories({ categories }: Props) {
   const sortOptions = ['По умолчанию', 'Дороже', 'Дешевле']
 
-  const { activeCategory, setActiveCategory, activeSort, setActiveSort } =
-    useCatalogStore()
+  const { activeCategory, setCategory, activeSort, setSort } = useCatalogStore()
 
   // новое состояние для модалки сортировки
   const [isSortOpen, setIsSortOpen] = useState(false)
 
   const toggleSort = () => setIsSortOpen(!isSortOpen)
-
-  const handleSortSelect = (option: string) => {
-    setActiveSort(option)
-    setIsSortOpen(false) // закрываем модалку после выбора
-  }
 
   const sortRef = useRef<HTMLUListElement>(null)
 
@@ -50,14 +51,14 @@ export default function Categories({}: Props) {
     <nav className={styles.categories}>
       <ul className={styles.list}>
         {categories.map((category) => {
-          const isActive = activeCategory === category
+          const isActive = activeCategory === category.name
           return (
-            <li key={category} className={styles.item}>
+            <li key={category.id} className={styles.item}>
               <button
-                onClick={() => setActiveCategory(category)}
+                onClick={() => setCategory(category.name)}
                 className={`${styles.link} ${isActive ? styles.active : ''}`}
               >
-                {category}
+                {category.name}
               </button>
             </li>
           )
@@ -67,7 +68,7 @@ export default function Categories({}: Props) {
       <div className={styles.sortWrapper}>
         <div className={styles.sortToggler} onClick={toggleSort}>
           <Filter className={styles.svg} />
-          <span>Сортировка: {activeSort}</span>
+          <span>Сортировка: {activeSort || 'По умолчанию'}</span>
         </div>
 
         <ul
@@ -75,14 +76,19 @@ export default function Categories({}: Props) {
           className={`${styles.sortOptions} ${isSortOpen ? styles.open : ''}`}
         >
           {sortOptions.map((option) => {
-            const isActive = activeSort === option
+            const isActive =
+              (option === 'По умолчанию' && activeSort === null) ||
+              activeSort === option
             return (
               <li
                 key={option}
                 className={`${styles.sortOption} ${
                   isActive ? styles.activeSortOption : ''
                 }`}
-                onClick={() => handleSortSelect(option)}
+                onClick={() => {
+                  setSort(option === 'По умолчанию' ? null : (option as any))
+                  setIsSortOpen(false)
+                }}
               >
                 <span>{option}</span>
                 {isActive ? (
