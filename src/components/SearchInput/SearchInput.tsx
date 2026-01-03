@@ -4,42 +4,34 @@ import React, { useEffect, useRef, useState } from 'react'
 import styles from './SearchInput.module.scss'
 import { Loupe } from '@/assets/Loupe'
 import { Cross } from '@/assets/Cross'
-import { Api } from '../../services/api-client'
-import { Product } from '@prisma/client'
-import { useDebounce } from 'react-use'
-import Link from 'next/link'
 
 interface Props {
   className?: string
 }
 
 export const SearchInput: React.FC<Props> = ({ className }) => {
+  const [items] = useState([
+    'Телефон',
+    'телевизор',
+    'Ноутбук',
+    'Планшет',
+    'тепловизор',
+    'теплотрасса',
+    'телестанция',
+    'телебашня',
+    'телескоп',
+  ])
   const [query, setQuery] = useState('')
   const [hovered, setHovered] = useState<string | null>(null)
-  const [products, setProducts] = useState<Product[]>([])
   const [isOpen, setIsOpen] = useState(false)
-
-  useDebounce(
-    async () => {
-      try {
-        Api.products.search(query).then((products) => {
-          setProducts(products)
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    },
-    250,
-    [query]
-  )
 
   const ref = useRef<HTMLDivElement>(null)
 
   // Фильтрация: только элементы, которые начинаются с query
   const filtered =
-    query.length >= 2
-      ? products.filter((product) =>
-          product.name.toLowerCase().startsWith(query.toLowerCase())
+    query.length >= 1
+      ? items.filter((item) =>
+          item.toLowerCase().startsWith(query.toLowerCase())
         )
       : []
 
@@ -48,7 +40,7 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
     const next = hovered
       ? hovered.toLowerCase()
       : filtered.length > 0
-      ? filtered[0].name.toLowerCase()
+      ? filtered[0].toLowerCase()
       : ''
 
     if (!base || !next.startsWith(base.toLowerCase())) return base
@@ -117,17 +109,16 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
 
       {isOpen && filtered.length > 0 && (
         <div className={styles.searchItems}>
-          {filtered.slice(0, 5).map((product) => (
-            <Link
-              key={product.id}
+          {filtered.slice(0, 5).map((item) => (
+            <div
+              key={item}
               className={styles.searchItem}
-              href={`/product/${product.id}`}
-              onClick={() => onSelect(product.name.toLowerCase())}
-              onMouseEnter={() => setHovered(product.name.toLowerCase())}
+              onClick={() => onSelect(item.toLowerCase())}
+              onMouseEnter={() => setHovered(item.toLowerCase())}
               onMouseLeave={() => setHovered(null)}
             >
-              {product.name.toLowerCase()}
-            </Link>
+              {item.toLowerCase()}
+            </div>
           ))}
         </div>
       )}
