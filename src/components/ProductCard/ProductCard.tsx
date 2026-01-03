@@ -8,7 +8,6 @@ import { Bookmark } from '@/assets/Bookmark'
 import { Button } from '@/ui/Button/Button'
 import { Plus } from '@/assets/Plus'
 import { Minus } from '@/assets/Minus'
-import { addToCart, removeFromCart } from '@/app/actions/cart'
 
 type ProductCardProps = {
   product: {
@@ -91,7 +90,6 @@ export default function ProductCard({ product }: ProductCardProps) {
                 className={`${styles.minus} ${quantity && styles.minusActive}`}
                 onClick={(e) => {
                   e.stopPropagation()
-                  removeFromCart(item.id)
                 }}
               >
                 <Minus />
@@ -101,7 +99,6 @@ export default function ProductCard({ product }: ProductCardProps) {
                 className={styles.plus}
                 onClick={(e) => {
                   e.stopPropagation()
-                  addToCart(item.id)
                 }}
               >
                 <Plus />

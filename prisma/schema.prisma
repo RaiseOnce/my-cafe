@@ -52,6 +52,7 @@ model Product {
   category Category @relation(fields: [categoryId], references: [id])
   categoryId Int
 
+  bookmark Boolean @default(false)
   items ProductItem[]
 
   createdAt DateTime @default(now())
