@@ -69,6 +69,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 onClick={(e) => {
                   e.preventDefault()
                   e.stopPropagation()
+                  // toggleFavorite(userId, product.id)
                 }}
               >
                 <Bookmark
