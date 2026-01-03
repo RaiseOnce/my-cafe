@@ -48,7 +48,6 @@ model Product {
   name String
   imageUrl String
 
-
   category Category @relation(fields: [categoryId], references: [id])
   categoryId Int
 
@@ -63,9 +62,9 @@ model ProductItem {
     id Int @id @default(autoincrement())
 
     price     Int
-    weight    Int
 
     cartItems CartItem[]
+    weight    Int
 
     product   Product @relation(fields: [productId], references: [id])
     productId Int
@@ -79,7 +78,7 @@ model Cart {
 
   items CartItem[]
 
-  token String @unique
+  token String
 
   totalAmount Int @default(0)
 
@@ -124,7 +123,6 @@ model Order {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
-
 
 model VerificationCode {
   id        Int      @id @default(autoincrement())
