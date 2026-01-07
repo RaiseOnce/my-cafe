@@ -51,7 +51,7 @@ export default function ProductCard({ product }: Props) {
         <div
           className={`${styles.inner} ${count > 0 ? styles.innerActive : ''}`}
         >
-          <Link href={'/'} className={styles.innerLink}>
+          <Link href={`/product/${item.id}`} className={styles.innerLink}>
             <div className={styles.imgWrapper}>
               <div className={styles.avatar}></div>
               <Image

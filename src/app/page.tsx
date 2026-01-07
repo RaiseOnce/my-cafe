@@ -34,8 +34,8 @@ export default async function Home() {
   })
 
   return (
-    <div className={styles.home}>
-      <div className={styles.container}>
+    <div className={styles.container}>
+      <div className={styles.home}>
         <h2 className={styles.title}>Меню</h2>
         <Categories categories={categories} />
         <ProductCards products={products} />

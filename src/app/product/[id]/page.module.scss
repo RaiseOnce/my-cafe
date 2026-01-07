@@ -1,0 +1,21 @@
+.container {
+  margin: 0 auto;
+  max-width: 1500px;
+  padding-left: 96px;
+  padding-right: 96px;
+}
+
+.product {
+  margin-top: 82px;
+  padding-top: 40px;
+  display: flex;
+}
+
+.right {
+  padding-left: 40px;
+}
+
+.img {
+  border-radius: 16px;
+  object-fit: cover;
+}
