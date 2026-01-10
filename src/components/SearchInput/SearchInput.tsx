@@ -39,7 +39,7 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
   const filtered =
     query.length >= 2
       ? products.filter((product) =>
-          product.name.toLowerCase().startsWith(query.toLowerCase())
+          product.name.toLowerCase().includes(query.toLowerCase())
         )
       : []
 
