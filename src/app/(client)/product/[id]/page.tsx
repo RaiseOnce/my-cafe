@@ -1,6 +1,6 @@
 import styles from './page.module.scss'
 import { notFound } from 'next/navigation'
-import { prisma } from '../../../../prisma/prisma-client'
+import { prisma } from '../../../../../prisma/prisma-client'
 import Image from 'next/image'
 import { Button } from '@/ui/Button/Button'
 import { Minus } from '@/assets/Minus'
@@ -38,7 +38,7 @@ export default async function ProductPage({ params }: Props) {
         </div>
         <div className={styles.right}>
           <div className={styles.top}>
-            <h2 className={styles.title}>Название</h2>
+            <h2 className={styles.title}>{product.name}</h2>
             <div className={styles.weight}>300 г</div>
             <h3 className={styles.subtitle}>Описание</h3>
             <div className={styles.text}>

@@ -2,7 +2,7 @@ import styles from './page.module.scss'
 import Categories from '@/components/Categories/Categories'
 import ProductCards from '@/components/ProductCards/ProductCards'
 import { cookies } from 'next/headers'
-import { prisma } from '../../prisma/prisma-client'
+import { prisma } from '../../../prisma/prisma-client'
 
 export default async function Home() {
   const cookieStore = await cookies()
