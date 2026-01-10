@@ -10,23 +10,17 @@ export default async function Home() {
 
   const categories = await prisma.category.findMany({
     include: {
-      products: {
-        include: {
-          items: true,
-        },
-      },
+      products: true,
     },
   })
 
   const products = await prisma.product.findMany({
     include: {
       category: true,
-      items: {
-        include: {
-          cartItems: {
-            where: {
-              cart: { token },
-            },
+      cartItems: {
+        where: {
+          cart: {
+            token,
           },
         },
       },

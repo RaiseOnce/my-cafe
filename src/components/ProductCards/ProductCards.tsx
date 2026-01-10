@@ -9,16 +9,25 @@ type Category = {
   name: string
 }
 
+type CartItem = {
+  quantity: number
+}
+
 type Product = {
   id: number
   name: string
   imageUrl: string
-  bookmark: boolean
+  description: string
+  composition: string
+  proteins: number
+  fats: number
+  carbohydrates: number
+  calories: number
+  price: number
+  weight: number
   categoryId: number
   category: Category
-  createdAt: Date
-  updatedAt: Date
-  items: any[]
+  cartItems: CartItem[]
 }
 
 type Props = {
@@ -28,14 +37,16 @@ type Props = {
 export default function ProductCards({ products }: Props) {
   const { activeCategory, activeSort } = useCatalogStore()
 
+  // Фильтрация по категории
   const filteredProducts =
     activeCategory === 'Все'
       ? products
       : products.filter((p) => p.category.name === activeCategory)
 
+  // Сортировка по цене
   const sortedProducts = [...filteredProducts].sort((a, b) => {
-    const aPrice = a.items[0]?.price ?? 0
-    const bPrice = b.items[0]?.price ?? 0
+    const aPrice = a.price
+    const bPrice = b.price
 
     if (activeSort === 'Дороже') return bPrice - aPrice
     if (activeSort === 'Дешевле') return aPrice - bPrice
