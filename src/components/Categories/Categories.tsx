@@ -5,7 +5,7 @@ import { Button } from '@/ui/Button/Button'
 import { Filter } from '@/assets/Filter'
 import styles from './Categories.module.scss'
 import { Check } from '@/assets/Check'
-import { useCatalogStore } from '@/app/store/useCatalogStore'
+import { useCatalogStore } from '@/store/useCatalogStore'
 
 type Category = {
   id: number

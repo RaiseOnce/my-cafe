@@ -2,7 +2,7 @@
 
 import ProductCard from '../ProductCard/ProductCard'
 import styles from './ProductCards.module.scss'
-import { useCatalogStore } from '@/app/store/useCatalogStore'
+import { useCatalogStore } from '@/store/useCatalogStore'
 
 type Category = {
   id: number
