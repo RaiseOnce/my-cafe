@@ -8,6 +8,7 @@ import { Bookmark } from '@/assets/Bookmark'
 import { Button } from '@/ui/Button/Button'
 import { Plus } from '@/assets/Plus'
 import { Minus } from '@/assets/Minus'
+import { useCartStore } from '@/app/store/useCartStore'
 
 type CartItem = {
   quantity: number
@@ -39,8 +40,9 @@ type Props = {
 }
 
 export default function ProductCard({ product }: Props) {
-  // Вытаскиваем количество из cartItems
-  const count = product.cartItems[0]?.quantity ?? 0
+  const { items, add, remove } = useCartStore()
+  // количество теперь берём из Zustand
+  const count = items[product.id]?.quantity ?? 0
 
   return (
     <div className={styles.productCard}>
@@ -88,18 +90,20 @@ export default function ProductCard({ product }: Props) {
           <Button className={styles.btn}>
             <span
               className={`${styles.minus} ${count && styles.minusActive}`}
-              // onClick={(e) => {
-              //   e.stopPropagation()
-              // }}
+              onClick={(e) => {
+                e.stopPropagation()
+                remove(product.id)
+              }}
             >
               <Minus />
             </span>
             <div className={styles.price}>{product.price} TMT</div>
             <span
               className={styles.plus}
-              // onClick={(e) => {
-              //   e.stopPropagation()
-              // }}
+              onClick={(e) => {
+                e.stopPropagation()
+                add(product.id)
+              }}
             >
               <Plus />
             </span>
